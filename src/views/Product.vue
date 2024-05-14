@@ -1,7 +1,7 @@
 <template>
     <div class="container">
     <h1>Products Listing</h1>
-    <button @click="newCustomer()"
+    <button @click="NewProduct()"
         class="btn btn-success mx-2">
         <font-awesome-icon icon="plus" />
     </button>
@@ -28,11 +28,11 @@
         <td>{{ product.Category }}</td>
         <td>{{ product.Actions }}</td>
         <td>
-            <button @click="deleteCustomer(product.id)"
+            <button @click="deleteProduct(product.id)"
             class="btn btn-danger mx-2">
             <font-awesome-icon icon="trash" />
             </button>
-            <button @click="editCustomer(customer.id)"
+            <button @click="editProduct(product.id)"
             class="btn btn-warning mx-2">
             <font-awesome-icon icon="pencil" />
             </button>
@@ -46,44 +46,44 @@
     import axios from "axios"
     import Swal from "sweetalert2"
     export default{
-        name:'Customer',
+        name:'Product',
         data() {
             return {
-                customers:[]
+                products:[]
             }
         },
         methods: {
-            deleteCustomer(id){
+            deleteProduct(id){
                 Swal.fire({
-                    title: `Do you want to delete the Customer with id ${id}?`,
+                    title: `Do you want to delete the Product with id ${id}?`,
                     showCancelButton: true,
                     confirmButtonText: 'Delete',
                 }).then((result)=>{
                 /* Read more about isConfirmed, isDenied below */
                 if(result.isConfirmed){
                     //Swal.fire('Saved!', '', 'success')
-                    axios.delete(`http://127.0.0.1:8000/api/customers/${id}`)
+                    axios.delete(`http://127.0.0.1:8000/api/products/${id}`)
                     .then(response=>{
                         if(response.data.success){
                             Swal.fire('Deleted!! ', '', 'success')
-                            this.customers=response.data.customers
+                            this.products=response.data.products
                         }
                     })
                 }
                 })
             }
-            editCustomer(id){
-                this.$router.push({name: 'EditarCustomer', params: {`${id}`}})
+            editProduct(id){
+                this.$router.push({name: 'EditarProduct', params: {`${id}`}})
             },
-            newCustomer(){
-                this.$router.push({name: 'NewCustomer'});   
+            NewProduct(){
+                this.$router.push({name: 'NewProduct'});   
             }
 
         },
         mounted() {
             axios
-                .get('http://127.0.0.1:8000/api/customers')
-                .then(response=>(this.customers=response.data.customers.data))
+                .get('http://127.0.0.1:8000/api/products')
+                .then(response=>(this.products=response.data.products.data))
         },
     }
 </script>

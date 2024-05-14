@@ -7,6 +7,12 @@ import EditPaymode from '../components/paymode/EditPaymode.vue'
 import NewPaymode from '../components/paymode/NewPaymode.vue'
 import Paymode from '../views/Paymode'
 
+
+
+import EditProduct from '../components/product/EditProduct.vue';
+import NewProduct from '../components/product/NewProduct.vue';
+import NewProduct from '../views/Product';
+
 const routes = [
   {
     path: '/',
@@ -50,6 +56,22 @@ const routes = [
     path: '/paymode',
     name: 'Paymode',
     component: Paymode
+  },
+
+  {
+    path: '/add-product',
+    name: 'NewProduct',
+    component: NewProduct
+  },
+  {
+    path: '/editar-product/:id',
+    name: 'EditProduct',
+    component: EditProduct
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    component: Product
   },
 ]
 

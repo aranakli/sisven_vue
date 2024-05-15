@@ -1,7 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import Customer from '../views/Customer'
-import Paymode from '../views/Paymode'
+import { createRouter, createWebHashHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import Categorie from '../views/Categorie';
+
+import EditCategorie from '../components/Categorie/EditCategorie.vue';
+import NewCategorie from '../components/Categorie/NewCategorie.vue';
 
 const routes = [
   {
@@ -18,14 +20,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/customer',
-    name: 'Customer',
-    component: HomeView
+    path: '/categorie',
+    name: 'Categorie',
+    component: Categorie
   },
   {
-    path: '/paymode',
-    name: 'Paymode',
-    component: HomeView
+    path: '/edit-categorie',
+    name: 'EditCategorie',
+    component: EditCategorie
+  },
+  {
+    path: '/new-categorie',
+    name: 'NewCategorie',
+    component: NewCategorie
   },
 ]
 

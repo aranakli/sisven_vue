@@ -59,10 +59,8 @@ export default {
             this.$router.push({ name: 'Categories' })
         },
         async saveCategorie() {
-            console.log(categories);
-            console.log(this.data);
             this.categories.id = this.id
-            const res = await axios.post(`http://127.0.0.1:8000/api/categorie/`, this.categories)
+            const res = await axios.post(`http://127.0.0.1:8000/api/categories/`, this.categories)
             console.log(res);
             if (res.status == 200) {
                 this.$router.push({name: 'Categorie'})

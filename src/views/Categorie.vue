@@ -64,7 +64,7 @@ export default {
             })
         },
         editCategorie(id) {
-            this.$router.push({name: 'EditCategorie', params: { id: `${id}`}})
+            this.$router.push({name: 'EditCategorie', params: { id: `${id}` }} )
         },
         newCategorie() {
             this.$router.push({name: 'NewCategorie'});

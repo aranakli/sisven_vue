@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <button class="btn btn-primary" type="submit">Update</button>
-                    <button class="btn btn-secundary mx-2" @click="cancelar">Cancel</button>
+                    <button class="btn btn-secundary mx-2" @click="cancel">Cancel</button>
                 </form>
             </div>
         </div>
@@ -56,7 +56,7 @@ export default {
     },
     methods: {
         cancel() {
-            this.$router.push({ name: 'Categories' })
+            this.$router.push({ name: 'Categorie' })
         },
         async saveCategorie() {
             this.categories.id = this.id

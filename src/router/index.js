@@ -12,6 +12,10 @@ import Categorie from '../views/Categorie';
 import EditCategorie from '../components/Categorie/EditCategorie.vue';
 import NewCategorie from '../components/Categorie/NewCategorie.vue';
 
+import Product from '../views/Product';
+import EditProduct from '../components/product/EditProduct.vue';
+import NewProduct from '../components/product/NewProduct.vue';
+
 const routes = [
   {
     path: '/',
@@ -71,6 +75,23 @@ const routes = [
     name: 'NewCategorie',
     component: NewCategorie
   },
+
+  {
+    path: '/product',
+    name: 'Product',
+    component: Product
+  },
+  {
+    path: '/edit-product',
+    name: 'EditProduct',
+    component: EditProduct
+  },
+  {
+    path: '/new-product',
+    name: 'NewProduct',
+    component: NewProduct
+  },
+
 ]
 
 const router = createRouter({

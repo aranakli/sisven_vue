@@ -7,13 +7,14 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">.</th>  
             <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Categoría</th>
-            <th scope="col">Acciones</th>
+<th scope="col">Nombre</th>
+<th scope="col">Precio</th>
+<th scope="col">Stock</th>
+<th scope="col">Categoría</th>
+<th scope="col">Acciones</th>
+
           </tr>
         </thead>
         <tbody>
@@ -23,7 +24,8 @@
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
             <td>{{ product.stock }}</td>
-            <td>{{ product.category.name }}</td>
+            <td>{{ product.category_name ? product.category_name : 'Sin categoría' }}</td>
+
             <td>
               <button @click="editProduct(product.id)" class="btn btn-warning mx-2">
                 <font-awesome-icon icon="pencil" />
@@ -43,7 +45,7 @@
   import Swal from "sweetalert2";
   
   export default {
-    name: "Products",
+    name: "Product",
     data() {
       return {
         products: []

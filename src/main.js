@@ -10,7 +10,14 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 
-library.add(faBank, faBuilding, faPencil, faPhone, faPlus, faTag, faTrash, faUser);
+library.add(faBank);
+library.add(faBuilding);
+library.add(faPencil);
+library.add(faPhone);
+library.add(faPlus);
+library.add(faTag);
+library.add(faTrash);
+library.add(faUser);
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)

@@ -1,17 +1,16 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHashHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
 import EditCustomer from '../components/customer/EditCustomer.vue'
 import NewCustomer from '../components/customer/NewCustomer.vue'
-import Customer from '../views/Customer'
+import Customer from '../views/Customer.vue'
+
+import Paymode from '../views/Paymode.vue'
 import EditPaymode from '../components/paymode/EditPaymode.vue'
 import NewPaymode from '../components/paymode/NewPaymode.vue'
-import Paymode from '../views/Paymode'
 
-
-
-import EditProduct from '../components/product/EditProduct.vue';
-import NewProduct from '../components/product/NewProduct.vue';
-import NewProduct from '../views/Product';
+import Categorie from '../views/Categorie';
+import EditCategorie from '../components/Categorie/EditCategorie.vue';
+import NewCategorie from '../components/Categorie/NewCategorie.vue';
 
 const routes = [
   {
@@ -33,45 +32,44 @@ const routes = [
     component: Customer
   },
   {
-    path: '/add-customer',
-    name: 'NewCustomer',
-    component: NewCustomer
-  },
-  {
-    path: '/editar-customer/:id',
+    path: '/edit-customer',
     name: 'EditCustomer',
     component: EditCustomer
   },
   {
-    path: '/add-paymode',
-    name: 'NewPaymode',
-    component: NewPaymode
-  },
-  {
-    path: '/editar-paymode/:id',
-    name: 'EditPaymode',
-    component: EditPaymode
+    path: '/new-customer',
+    name: 'NewCustomer',
+    component: NewCustomer
   },
   {
     path: '/paymode',
     name: 'Paymode',
     component: Paymode
   },
-
   {
-    path: '/add-product',
-    name: 'NewProduct',
-    component: NewProduct
+    path: '/edit-paymode',
+    name: 'EditPaymode',
+    component: EditPaymode
   },
   {
-    path: '/editar-product/:id',
-    name: 'EditProduct',
-    component: EditProduct
+    path: '/new-paymode',
+    name: 'NewPaymode',
+    component: NewPaymode
   },
   {
-    path: '/product',
-    name: 'Product',
-    component: Product
+    path: '/categorie',
+    name: 'Categorie',
+    component: Categorie
+  },
+  {
+    path: '/edit-categorie',
+    name: 'EditCategorie',
+    component: EditCategorie
+  },
+  {
+    path: '/new-categorie',
+    name: 'NewCategorie',
+    component: NewCategorie
   },
 ]
 

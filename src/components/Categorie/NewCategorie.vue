@@ -1,34 +1,34 @@
 <template>
     <div class="container text-start">
-        <h1 class="text-primary fw-bold"> Edit Paymode</h1>
+        <h1 class="text-primary fw-bold"> New</h1>
         <div class="card">
             <div class="card-header fw-bold">
-                Paymode
+                Categorie
             </div>
             <div class="card-body">
-                <form @submit.prevent="updatePaymode">
+                <form @submit.prevent="saveCategorie">
                     <div class="row mb-3">
-                        <label for="id" class="form-label">Id: </label>
+                        <label for="id" class="form-label">Id : </label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="tag" /> </div>
-                            <input type="text" class="form-control" id="id" placeholder="Paymode Id" disabled
-                                v-model="pay_mode.id">
+                            <input type="text" class="form-control" id="id" placeholder="Categorie Id"
+                                disabled v-model='categories.id'>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="name" class="form-label">Name : </label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /> </div>
-                            <input type="text" class="form-control" id="name" placeholder="Paymode name"
-                                v-model="pay_mode.name">
+                            <input type="text" class="form-control" id="name" placeholder="Categorie name"
+                                v-model='categories.name'>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="observation" class="form-label">Observation : </label>
+                        <label for="description" class="form-label">Description : </label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /> </div>
-                            <input type="text" class="form-control" id="observation" placeholder="Paymode observation"
-                                v-model="pay_mode.observation">
+                            <input type="text" class="form-control" id="description" placeholder="Nombre de la categorie"
+                                v-model='categories.description'>
                         </div>
                     </div>
                     <button class="btn btn-primary" type="submit">Update</button>
@@ -44,42 +44,41 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 export default {
-    name: 'EditPaymode',
+    name: 'NewCategorie',
     data() {
         return {
-            pay_mode: {
+            categories: {
                 id: 0,
                 name: '',
-                observation: ''
+                description: ''
             }
         }
     },
     methods: {
         cancel() {
-            this.$router.push({ name: 'Paymode' })
+            this.$router.push({ name: 'Categorie' })
         },
-        async updatePaymode() {
-            const res = await axios.put(`http://127.0.0.1:8000/api/pay_modes/${this.pay_mode.id}`, this.pay_mode)
+        async saveCategorie() {
+            this.categories.id = this.id
+            const res = await axios.post(`http://127.0.0.1:8000/api/categories/`, this.categories)
+            console.log(res);
             if (res.status == 200) {
-                this.$router.push({ name: 'Paymode' })
+                this.$router.push({name: 'Categorie'})
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'The pay_mode has been updated',
+                    title: 'Categorie has been saved',
                     showConfirmButton: false,
                     timer: 2000
                 })
             }
         }
     },
-    
     mounted() {
-        this.pay_mode.id = this.$route.params.id;
-        axios.get(`http://127.0.0.1:8000/api/pay_modes/${this.pay_mode.id}`)
-            .then(response => {
-                this.pay_mode = response.data.pay_mode;
-            })
+        // axios.get(`http://127.0.0.1:8000/api/categories/`)
+        //     .then(response => {
+        //         this.categories = response.data.categories
+        //     })
     }
 }
-
 </script>

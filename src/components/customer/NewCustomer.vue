@@ -6,75 +6,73 @@
                 Customer
             </div>
             <div class="card-body">
-                <form @submit.prevent="saveCostumer">
+                <form @submit.prevent="saveCustomer">
                     <div class="row mb-3">
-                        <label for="id" class="form-label">Código</label>
-                        <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="tag" /> </div>
-                            <input type="text" class="form-control" id="id" placeholder="Codigo de customer"
-                                disabled v-model='customer.id'>
+                            <label for="id" class="form-label">Id : </label>
+                            <div class="input-group">
+                                <div class="input-group-text"> <font-awesome-icon icon="tag" /> </div>
+                                <input type="text" class="form-control" id="id" placeholder="Customer Id"
+                                    disabled v-model='customers.id'>
+                            </div>
                         </div>
-                    </div>
-
                     <div class="row mb-3">
-                        <label for="document" class="form-label">Document Number</label>
+                        <label for="document_number" class="form-label">Document Number</label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="number" required class="form-control" id="document" placeholder="Document number"
-                            v-model="customer.document_number">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="firstname" class="form-label">First Name</label>
-                        <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="firstname" placeholder="First name"
-                            v-model="customer.first_name">
+                            <input type="number" required class="form-control" id="document_number" placeholder="Document number" 
+                            v-model="customers.document_number">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="lastname" class="form-label">Last Name</label>
+                        <label for="first_name" class="form-label">First Name</label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="lastname" placeholder="Last name"
-                            v-model="customer.last_name">
+                            <input type="text" required class="form-control" id="first_name" placeholder="First name" 
+                            v-model="customers.first_name">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="last_name" class="form-label">Last Name</label>
+                        <div class="input-group">
+                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
+                            <input type="text" required class="form-control" id="last_name" placeholder="Last name" 
+                            v-model="customers.last_name">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="address" class="form-label">Address</label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="address" placeholder="Address"
-                            v-model="customer.address">
+                            <input type="text" required class="form-control" id="address" placeholder="Address" 
+                            v-model="customers.address">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="birthdate" class="form-label">Birthdate</label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="date" required class="form-control" id="birthdate" placeholder="birthdate"
-                            v-model="customer.birthdate">
+                            <input type="date" required class="form-control" id="birthdate" placeholder="Birthdate" 
+                            v-model="customers.birthdate">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="phone" class="form-label">Phone number</label>
+                        <label for="phone_number" class="form-label">Phone number</label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="phone" placeholder="phone"
-                            v-model="customer.phone_number">
+                            <input type="text" required class="form-control" id="phone_number" placeholder="Phone number" 
+                            v-model="customers.phone_number">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="email" class="form-label">Email</label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="email" placeholder="email"
-                            v-model="customer.email">
+                            <input type="email" required class="form-control" id="email" placeholder="Email" 
+                            v-model="customers.email">
                         </div>
                     </div>
-
-                    <button class="btn btn-primary" type="submit">Guardar</button>
-                    <button class="btn btn-secundary mx-2" @click="cancelar">Cancelar</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-secondary mx-2" @click="cancel">Cancel</button>
                 </form>
             </div>
         </div>
@@ -89,31 +87,32 @@ export default {
     name: 'NewCustomer',
     data() {
         return {
-            customer: {
+            customers: {
                 id: 0,
                 document_number: 0,
                 first_name: '',
                 last_name: '',
                 address: '',
-                birthdate: '',
+                birthdate: 0,
                 phone_number: 0,
-                email: ""
-            },
+                email: ''
+            }
         }
     },
     methods: {
         cancel() {
-            this.$router.push({ name: 'Customers' })
+            this.$router.push({ name: 'Customer' })
         },
-        async saveCostumer() {
-            const res = await axios.post(`http://127.0.0.1:8000/api/customers/`, this.customer)
+        async saveCustomer() {
+            this.customers.id = this.id
+            const res = await axios.post(`http://127.0.0.1:8000/api/customers/`, this.customers)
             console.log(res);
             if (res.status == 200) {
-                this.$router.push({name: 'Customers'})
+                this.$router.push({name: 'Customer'})
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'La customer ha sido guardada',
+                    title: 'Customer has been saved',
                     showConfirmButton: false,
                     timer: 2000
                 })
@@ -121,7 +120,10 @@ export default {
         }
     },
     mounted() {
-        
+        // axios.get(`http://127.0.0.1:8000/api/customers/`)
+        //     .then(response => {
+        //         this.customers = response.data.customers
+        //     })
     }
 }
 </script>

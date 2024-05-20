@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import EditCustomer from '../components/customer/EditCustomer.vue'
-import NewCustomer from '../components/customer/NewCustomer.vue'
-import Customer from '../views/Customer'
-import EditPaymode from '../components/paymode/EditPaymode.vue'
-import NewPaymode from '../components/paymode/NewPaymode.vue'
-import Paymode from '../views/Paymode'
+import EditCustomer from '../components/customer/EditCustomer.vue';
+import NewCustomer from '../components/customer/NewCustomer.vue';
+import Customer from '../views/Customer';
+import EditPaymode from '../components/paymode/EditPaymode.vue';
+import NewPaymode from '../components/paymode/NewPaymode.vue';
+import Paymode from '../views/Paymode';
 
 const routes = [
   {

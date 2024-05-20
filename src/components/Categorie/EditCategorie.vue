@@ -1,6 +1,6 @@
 <template>
     <div class="container text-start">
-        <h1 class="text-primary fw-bold"> Editar</h1>
+        <h1 class="text-primary fw-bold"> Edit Categorie</h1>
         <div class="card">
             <div class="card-header fw-bold">
                 Categorie
@@ -12,7 +12,7 @@
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="tag" /> </div>
                             <input type="text" class="form-control" id="id" placeholder="Categorie Id" disabled
-                                v-model="categories.id">
+                                v-model="categorie.id">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -20,7 +20,7 @@
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /> </div>
                             <input type="text" class="form-control" id="name" placeholder="Categorie name"
-                                v-model="categories.name">
+                                v-model="categorie.name">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -28,7 +28,7 @@
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="building" /> </div>
                             <input type="text" class="form-control" id="description" placeholder="Categorie description"
-                                 v-model="categories.description">
+                                v-model="categorie.description">
                         </div>
                     </div>
                     <button class="btn btn-primary" type="submit">Update</button>
@@ -47,48 +47,39 @@ export default {
     name: 'EditCategorie',
     data() {
         return {
-            categories: {
+            categorie: {
                 id: 0,
                 name: '',
                 description: ''
-            },
-        };
+            }
+        }
     },
     methods: {
         cancel() {
             this.$router.push({ name: 'Categorie' })
         },
         async updateCategorie() {
-            try {
-                const res = await axios.put(`http://127.0.0.1:8000/api/categories/${this.categories.id}`, this.categories)
-                if (res.status == 200) {
-                    this.$router.push({ name: 'Categories' })
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'The categorie has been updated',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                }
-            } catch (error) {
-                console.error('Error updating categorie', error);
+            const res = await axios.put(`http://127.0.0.1:8000/api/categories/${this.categorie.id}`, this.categorie)
+            if (res.status == 200) {
+                this.$router.push({ name: 'Categorie' })
                 Swal.fire({
                     position: 'top-end',
-                    icon: 'error',
-                    title: 'Error. updated categories',
+                    icon: 'success',
+                    title: 'The categorie has been updated',
                     showConfirmButton: false,
                     timer: 2000
                 })
             }
-        },
-        mounted() {
-            this.categories.id = this.$route.params.id;
-            axios.get(`http://127.0.0.1:8000/api/categories/${this.categories.id}`)
-                .then(response => {
-                    this.categories = response.data.categories;
-                })
         }
+    },
+    
+    mounted() {
+        this.categorie.id = this.$route.params.id;
+        axios.get(`http://127.0.0.1:8000/api/categories/${this.categorie.id}`)
+            .then(response => {
+                this.categorie = response.data.categorie;
+            })
     }
 }
+
 </script>

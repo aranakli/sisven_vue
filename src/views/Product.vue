@@ -72,7 +72,7 @@
                 }
                 })
             }
-            editProduct(id){
+            EditProduct(id){
                 this.$router.push({name: 'EditarProduct', params: {`${id}`}})
             },
             NewProduct(){

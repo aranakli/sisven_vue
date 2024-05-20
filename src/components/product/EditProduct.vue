@@ -1,82 +1,56 @@
-<!--REVISAR-->
-
 <template>
     <div class="container text-start">
-        <h1 class="text-primary fw-bold"> Edit</h1>
+        <h1 class="text-primary fw-bold"> Edit Product</h1>
         <div class="card">
             <div class="card-header fw-bold">
-                Customer
+                Product
             </div>
             <div class="card-body">
-                <form @submit.prevent="updateCostumer">
+                <form @submit.prevent="updateProduct">
                     <div class="row mb-3">
-                        <label for="id" class="form-label">Código</label>
+                        <label for="id" class="form-label">ID</label>
                         <div class="input-group">
                             <div class="input-group-text"> <font-awesome-icon icon="tag" /> </div>
-                            <input type="text" class="form-control" id="id" placeholder="Codigo de customer"
-                                disabled v-model='customer.id'>
+                            <input type="text" class="form-control" id="id" placeholder="Product ID"
+                                disabled v-model='product.id'>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="document" class="form-label">Document Number</label>
+                        <label for="name" class="form-label">Name</label>
                         <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="number" required class="form-control" id="document" placeholder="Document number"
-                            v-model="customer.document_number">
+                            <div class="input-group-text"> <font-awesome-icon icon="box" /></div>
+                        <input type="text" required class="form-control" id="name" placeholder="Product Name"
+                            v-model="product.name">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="firstname" class="form-label">First Name</label>
+                        <label for="price" class="form-label">Price</label>
                         <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="firstname" placeholder="First name"
-                            v-model="customer.first_name">
+                            <div class="input-group-text"> <font-awesome-icon icon="dollar-sign" /></div>
+                        <input type="number" required class="form-control" id="price" placeholder="Product Price"
+                            v-model="product.price">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="lastname" class="form-label">Last Name</label>
+                        <label for="stock" class="form-label">Stock</label>
                         <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="lastname" placeholder="Last name"
-                            v-model="customer.last_name">
+                            <div class="input-group-text"> <font-awesome-icon icon="warehouse" /></div>
+                        <input type="number" required class="form-control" id="stock" placeholder="Product Stock"
+                            v-model="product.stock">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="address" class="form-label">Address</label>
+                        <label for="category" class="form-label">Category</label>
                         <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="address" placeholder="Address"
-                            v-model="customer.address">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="birthdate" class="form-label">Birthdate</label>
-                        <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="date" required class="form-control" id="birthdate" placeholder="birthdate"
-                            v-model="customer.birthdate">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="phone" class="form-label">Phone number</label>
-                        <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="phone" placeholder="phone"
-                            v-model="customer.phone_number">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <div class="input-group">
-                            <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-                        <input type="text" required class="form-control" id="email" placeholder="email"
-                            v-model="customer.email">
+                            <div class="input-group-text"> <font-awesome-icon icon="tags" /></div>
+                        <input type="text" required class="form-control" id="category" placeholder="Product Category"
+                            v-model="product.category">
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Guardar</button>
-                    <button class="btn btn-secundary mx-2" @click="cancelar">Cancelar</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-secondary mx-2" @click="cancel">Cancel</button>
                 </form>
             </div>
         </div>
@@ -88,42 +62,66 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 export default {
-    name: 'EditCustomer',
+    name: 'EditProduct',
     data() {
         return {
-            customer: {
+            product: {
                 id: 0,
-                document_number: 0,
-                first_name: '',
-                last_name: '',
-                address: '',
-                birthdate: '',
-                phone_number: 0,
-                email: ""
+                name: '',
+                price: 0,
+                stock: 0,
+                category: ''
             },
         }
     },
     methods: {
         cancel() {
-            this.$router.push({ name: 'Customers' })
+            this.$router.push({ name: 'Products' })
         },
-        async updateCostumer() {
-            const res = await axios.post(`http://127.0.0.1:8000/api/customers/`, this.customer)
-            console.log(res);
-            if (res.status == 200) {
-                this.$router.push({name: 'Customers'})
+        async updateProduct() {
+            try {
+                const res = await axios.put(`http://127.0.0.1:8000/api/products/${this.product.id}`, this.product)
+                if (res.status == 200) {
+                    this.$router.push({name: 'Products'})
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'The product has been updated',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            } catch (error) {
+                console.error(error)
                 Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'La customer ha sido guardada',
-                    showConfirmButton: false,
-                    timer: 2000
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                })
+            }
+        },
+        async getProductDetails(id) {
+            try {
+                const res = await axios.get(`http://127.0.0.1:8000/api/products/${id}`)
+                if (res.status == 200) {
+                    this.product = res.data.product
+                }
+            } catch (error) {
+                console.error(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
                 })
             }
         }
     },
     mounted() {
-        
+        const productId = this.$route.params.id
+        this.getProductDetails(productId)
     }
 }
 </script>
+
+<style scoped>
+</style>

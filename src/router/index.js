@@ -2,21 +2,15 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import EditCustomer from '../components/customer/EditCustomer.vue'
 import NewCustomer from '../components/customer/NewCustomer.vue'
+import Customer from '../views/Customer.vue'
 
-
+import Paymode from '../views/Paymode.vue'
 import EditPaymode from '../components/paymode/EditPaymode.vue'
 import NewPaymode from '../components/paymode/NewPaymode.vue'
 
 import Categorie from '../views/Categorie';
 import EditCategorie from '../components/Categorie/EditCategorie.vue';
 import NewCategorie from '../components/Categorie/NewCategorie.vue';
->>>>>>>>> Temporary merge branch 2
-
-
-
-import EditProduct from '../components/product/EditProduct.vue';
-import NewProduct from '../components/product/NewProduct.vue';
-import NewProduct from '../views/Product';
 
 const routes = [
   {
@@ -35,29 +29,34 @@ const routes = [
   {
     path: '/customer',
     name: 'Customer',
-    component: HomeView
+    component: Customer
+  },
+  {
+    path: '/edit-customer',
+    name: 'EditCustomer',
+    component: EditCustomer
+  },
+  {
+    path: '/new-customer',
+    name: 'NewCustomer',
+    component: NewCustomer
   },
   {
     path: '/paymode',
     name: 'Paymode',
     component: Paymode
   },
-
   {
-    path: '/add-product',
-    name: 'NewProduct',
-    component: NewProduct
+    path: '/edit-paymode',
+    name: 'EditPaymode',
+    component: EditPaymode
   },
   {
-    path: '/editar-product/:id',
-    name: 'EditProduct',
-    component: EditProduct
+    path: '/new-paymode',
+    name: 'NewPaymode',
+    component: NewPaymode
   },
   {
-    path: '/product',
-    name: 'Product',
-    component: Product
-=========
     path: '/categorie',
     name: 'Categorie',
     component: Categorie
@@ -71,13 +70,7 @@ const routes = [
     path: '/new-categorie',
     name: 'NewCategorie',
     component: NewCategorie
->>>>>>>>> Temporary merge branch 2
   },
-  {
-    path: '/product',
-    name: 'Product',
-    component: HomeView
-  }
 ]
 
 const router = createRouter({

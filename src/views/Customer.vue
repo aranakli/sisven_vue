@@ -1,10 +1,9 @@
 <template>
-    <div class="container">
-      <h1 class="text-start">
-        List of Customers |
-        <button @click="newCustomer" class="btn btn-success mx-2">
-          <font-awesome-icon icon="plus" />
-        </button>
+  <div class="container">
+      <h1 class="text-start">Customers list |
+          <button @click="newCustomer()" class="btn btn-success mx-2">
+              <font-awesome-icon icon="plus" />
+          </button>
       </h1>
       <table class="table">
         <thead>
@@ -41,45 +40,45 @@
   </template>
   
   <script>
-  import axios from 'axios';
-  import Swal from 'sweetalert2';
+  import axios from 'axios'
+  import Swal from 'sweetalert2'
   
   export default {
-    name: 'Customer',
-    data() {
-      return {
-        customers: []
-      };
-    },
-    methods: {
-      deleteCustomer(id) {
-        Swal.fire({
-          title: `Do you want to delete the Customer with id ${id}`,
-          showCancelButton: true,
-          confirmButtonText: 'Delete',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            axios.delete(`http://127.0.0.1:8000/api/customers/${id}`)
-              .then(response => {
-                if (response.data.success) {
-                  Swal.fire('Deleted!', '', 'success');
-                  this.customers = response.data.customers;
-                }
-              });
+      name: 'Customer',
+      data() {
+          return {
+              customers: []
           }
-        });
       },
-      editCustomer(id) {
-        this.$router.push({ name: 'EditCustomer', params: { id: id } });
+      methods: {
+          deleteCustomer(id) {
+              Swal.fire({
+                  title: `Do you want to delete the customer with id ${id}?`,
+                  showCancelButton: true,
+                  confirmButtonText: 'Delete',
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      axios.delete(`http://127.0.0.1:8000/api/customers/${id}`)
+                      .then(response => {
+                          if (response.data.success) {
+                              Swal.fire('Delete !! ', '', 'success')
+                              this.customers = response.data.customers
+                          }
+                      })
+                  }
+              })
+          },
+          editCustomer(id) {
+            this.$router.push({name: 'EditCustomer', params: { id: `${id}` }} )
+        },
+        newCustomer() {
+            this.$router.push({name: 'NewCustomer'});
+        }
       },
-      newCustomer() {
-        this.$router.push({ name: 'NewCustomer' });
-      }
-    },
-    mounted() {
-      axios.get('http://127.0.0.1:8000/api/customers')
-        .then(response => (this.customers = response.data.customers));
-    }
-  };
+      mounted() {
+          axios
+              .get('http://127.0.0.1:8000/api/customers')
+              .then(response => (this.customers = response.data.customers))
+      },
+  }
   </script>
-  

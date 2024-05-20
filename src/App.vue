@@ -2,6 +2,8 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/categorie">Categorie</router-link> |
+    <router-link to="/paymode">Paymode</router-link> |
+    <router-link to="/customer">Customer</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
   <router-view/>

@@ -1,11 +1,22 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import EditCustomer from '../components/customer/EditCustomer.vue';
-import NewCustomer from '../components/customer/NewCustomer.vue';
-import Customer from '../views/Customer';
-import EditPaymode from '../components/paymode/EditPaymode.vue';
-import NewPaymode from '../components/paymode/NewPaymode.vue';
-import Paymode from '../views/Paymode';
+import { createRouter, createWebHashHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import EditCustomer from '../components/customer/EditCustomer.vue'
+import NewCustomer from '../components/customer/NewCustomer.vue'
+
+
+import EditPaymode from '../components/paymode/EditPaymode.vue'
+import NewPaymode from '../components/paymode/NewPaymode.vue'
+
+import Categorie from '../views/Categorie';
+import EditCategorie from '../components/Categorie/EditCategorie.vue';
+import NewCategorie from '../components/Categorie/NewCategorie.vue';
+>>>>>>>>> Temporary merge branch 2
+
+
+
+import EditProduct from '../components/product/EditProduct.vue';
+import NewProduct from '../components/product/NewProduct.vue';
+import NewProduct from '../views/Product';
 
 const routes = [
   {
@@ -24,33 +35,49 @@ const routes = [
   {
     path: '/customer',
     name: 'Customer',
-    component: Customer
-  },
-  {
-    path: '/add-customer',
-    name: 'NewCustomer',
-    component: NewCustomer
-  },
-  {
-    path: '/editar-customer/:id',
-    name: 'EditCustomer',
-    component: EditCustomer
-  },
-  {
-    path: '/add-paymode',
-    name: 'NewPaymode',
-    component: NewPaymode
-  },
-  {
-    path: '/editar-paymode/:id',
-    name: 'EditPaymode',
-    component: EditPaymode
+    component: HomeView
   },
   {
     path: '/paymode',
     name: 'Paymode',
     component: Paymode
   },
+
+  {
+    path: '/add-product',
+    name: 'NewProduct',
+    component: NewProduct
+  },
+  {
+    path: '/editar-product/:id',
+    name: 'EditProduct',
+    component: EditProduct
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    component: Product
+=========
+    path: '/categorie',
+    name: 'Categorie',
+    component: Categorie
+  },
+  {
+    path: '/edit-categorie',
+    name: 'EditCategorie',
+    component: EditCategorie
+  },
+  {
+    path: '/new-categorie',
+    name: 'NewCategorie',
+    component: NewCategorie
+>>>>>>>>> Temporary merge branch 2
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    component: HomeView
+  }
 ]
 
 const router = createRouter({

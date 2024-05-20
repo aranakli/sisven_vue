@@ -11,20 +11,19 @@
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(categories, index) in categories" :key="index">
-                    <th scope="row"> {{ index + 1 }}</th>
-                    <td>{{ categories.id }}</td>
-                    <td>{{ categories.name }}</td>
-                    <td>{{ categories.description }}</td>
+                <tr v-for="(categorie, index) in categories" :key="index">
+                    <td>{{ categorie.id }}</td>
+                    <td>{{ categorie.name }}</td>
+                    <td>{{ categorie.description }}</td>
                     <td>
-                        <button @click="deleteCategorie(categories.id)" class="btn btn-danger mx-2">
+                        <button @click="deleteCategorie(categorie.id)" class="btn btn-danger mx-2">
                             <font-awesome-icon icon="trash" />
                         </button>
-                        <button @click="editCategorie(categories.id)" class="btn btn-warning mx-2">
+                        <button @click="editCategorie(categorie.id)" class="btn btn-warning mx-2">
                             <font-awesome-icon icon="pencil" />
                         </button>
                     </td>

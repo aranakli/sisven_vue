@@ -113,11 +113,9 @@ export default {
     cancel() {
       this.$router.push({ name: 'Products' });
     },
-    
     async saveProduct() {
       try {
         const res = await axios.post('http://127.0.0.1:8000/api/products', this.product);
-        console.log(res);
         if (res.status === 200) {
           this.$router.push({ name: 'Products' });
           Swal.fire({
@@ -135,7 +133,6 @@ export default {
         Swal.fire('¡Error!', 'Hubo un problema al guardar el producto.', 'error');
       }
     },
-    
     async fetchCategories() {
       try {
         const res = await axios.get('http://127.0.0.1:8000/api/categories');
